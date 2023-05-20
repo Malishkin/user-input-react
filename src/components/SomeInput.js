@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 const SomeInput = (props) => {
   
   const [enteredName, setEnteredName] = useState("");
@@ -6,6 +6,12 @@ const SomeInput = (props) => {
 
   const isEnteredNameValid = enteredName.trim() !== "";
   const isNameInputInvalid = !isEnteredNameValid && enteredNameTouched;
+  const [isFormValid, setIsFormValid] = useState(false);
+  useEffect(() => {
+    if (isEnteredNameValid) {
+      setIsFormValid(true);
+    }
+  }, [isFormValid]);
 
   
   const nameInputChangedHandler = (event) => {
